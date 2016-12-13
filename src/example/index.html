@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>example</title>
+</head>
+<body ontouchstart>
+<div id="container" class="container">
+
+</div>
+
+
+</body>
+<script>
+    var spa = new Espa({
+        container: "#container",
+        enter: 'enter',
+        enterTimeout: 300,
+        leave: 'leave',
+        leaveTimeout: 300
+    });
+
+    spa.routerMap([
+        {
+            url: '/about',
+            className: '',
+            render: () => {
+                return Espa.fetch('/example/about.html').then((res) => {
+                    return res.text();
+                })
+            },
+            bind: () => {}
+        },
+        {
+            url: '/article',
+            className: '',
+            render: () => {
+                return Espa.fetch('/example/article.html').then((res) => {
+                    return res.text();
+                })
+            },
+            bind: () => {}
+        },
+        {
+            url: '/',
+            className: '',
+            render: () => {
+                return Espa.fetch('/example/home.html').then((res) => {
+                    return res.text();
+                })
+            },
+            bind: () => {}
+        }
+    ]);
+
+    spa.run();
+
+    // Espa.fetch('http://localhost:8080/Espa.js', {
+    //     credentials: 'include'
+    // }).then(res => {
+    //     console.log(res)
+    // })
+
+    console.log(spa);
+</script>
+</html>
